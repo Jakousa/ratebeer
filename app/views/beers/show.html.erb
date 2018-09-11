@@ -10,6 +10,12 @@
   <%= @beer.style %>
 </p>
 
+<% if @beer.ratings.empty? %>
+ beer has not yet been rated!
+<% else %>
+ Has <%= @beer.ratings.length %> ratings, average <%= @beer.average_rating %>
+<% end %>
+
 <p>
   <strong>Brewery:</strong>
   <%= link_to @beer.brewery.name, @beer.brewery %>

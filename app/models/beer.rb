@@ -7,4 +7,8 @@ class Beer < ApplicationRecord
         average = sum / self.ratings.length
         return average.round(2)
     end
+
+    def to_s
+        return "#{self.name}, #{Brewery.find(self.brewery_id).name}"
+    end
 end

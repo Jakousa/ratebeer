@@ -3,10 +3,8 @@ class Beer < ApplicationRecord
     has_many :ratings
 
     def average_rating
-        k = 0.0
-        self.ratings.each do |rating|
-            k += rating.score
-        end
-        return k / self.ratings.length
+        sum = self.ratings.inject(0.0) { |sum, rating| sum + rating.score }
+        average = sum / self.ratings.length
+        return average.round(2)
     end
 end

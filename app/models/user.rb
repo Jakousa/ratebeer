@@ -12,6 +12,6 @@ class User < ApplicationRecord
                        length: { minimum: 3, maximum: 30 }
 
   validates_format_of :password, with: /.*[A-Z].*\d.*|.*\d.*[A-Z].*/
-  
+
   validates :password, length: { minimum: 4 }
 end

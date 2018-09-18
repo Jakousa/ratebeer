@@ -7,9 +7,7 @@ class Brewery < ApplicationRecord
   validate :year_cannot_be_greater_than_now
 
   def year_cannot_be_greater_than_now
-    if year > Date.today.year
-      errors.add(:year, "can't be in the future")
-    end
+    errors.add(:year, "can't be in the future") if year > Date.today.year
   end
 
   validates :name, uniqueness: true,

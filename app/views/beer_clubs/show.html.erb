@@ -1,25 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @beer_club.name %>
-</p>
+<h1>
+  <%= @beer_club.name %>   <%= @beer_club.city %>
+</h1>
 
 <p>
-  <strong>Founded:</strong>
-  <%= @beer_club.founded %>
+  Founded: <%= @beer_club.founded %>
 </p>
 
-<p>
-  <strong>City:</strong>
-  <%= @beer_club.city %>
-</p>
-
-<h2>List of users</h2>
+<h2>Members</h2>
 
 <ul>
   <% @beer_club.users.each do |user| %>
-    <li> <%= user.username %></li>
+    <li> <%= link_to user.username, user_path(user) %></li>
   <% end %>
 </ul>
 

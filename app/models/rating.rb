@@ -1,8 +1,7 @@
 class Rating < ApplicationRecord
-    belongs_to :beer
+  belongs_to :beer
 
-    def to_s
-        return "#{Beer.find(self.beer_id).name} #{self.score}"
-    end
-
+  def to_s
+    "#{Beer.find(beer_id).name} #{score}"
+  end
 end

@@ -1,17 +1,17 @@
 class Brewery < ApplicationRecord
-    include RatingAverage
+  include RatingAverage
 
-    has_many :beers, dependent: :destroy
-    has_many :ratings, through: :beers
+  has_many :beers, dependent: :destroy
+  has_many :ratings, through: :beers
 
-    def print_report
-        puts self.name
-        puts "established at year #{self.year}"
-        puts "number of beers #{self.beers.count}"
-    end
+  def print_report
+    puts name
+    puts "established at year #{year}"
+    puts "number of beers #{beers.count}"
+  end
 
-    def restart
-        self.year = 2018
-        puts "changed year to #{self.year}"
-    end
+  def restart
+    year = 2018
+    puts "changed year to #{year}"
+  end
 end

@@ -44,4 +44,12 @@ describe "Rating" do
     expect(page).to have_content beer2.name
     expect(page).not_to have_content beer1.name
   end
+
+  it "can be deleted by user" do
+    FactoryBot.create(:rating, beer: beer2, score: 3, user: user)
+    visit user_path(user)
+    expect{
+        click_link('delete')
+      }.to change{Rating.count}.by(-1)
+  end
 end

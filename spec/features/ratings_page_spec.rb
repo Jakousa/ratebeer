@@ -34,4 +34,14 @@ describe "Rating" do
     expect(page).to have_content beer2.name
     expect(page).to have_content 'Number of ratings: 2'
   end
+
+  it "by user are displayed on users page" do
+    user2 = FactoryBot.create(:user, username: 'One')
+    FactoryBot.create(:rating, beer: beer1, score: 1, user: user2)
+    FactoryBot.create(:rating, beer: beer2, score: 2, user: user2)
+    FactoryBot.create(:rating, beer: beer2, score: 3, user: user)
+    visit user_path(user)
+    expect(page).to have_content beer2.name
+    expect(page).not_to have_content beer1.name
+  end
 end

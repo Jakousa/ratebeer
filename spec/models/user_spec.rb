@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+include Helpers
+
 RSpec.describe User, type: :model do
   it "has the username set correctly" do
     user = User.new username:"Pekka"
@@ -47,9 +49,9 @@ RSpec.describe User, type: :model do
     end
 
     it "is the one with highest rating if several rated" do
-      brewery = FactoryBot.create(:brewery)
       create_beers_with_many_ratings({user: user}, 3, 2, 1, 6, 3)
-      best = create_beer_with_rating({ user: user }, 45, brewery, 'best')
+      best = FactoryBot.create(:beer, style: 'Stylez')
+      FactoryBot.create(:rating, beer: best, score: 25, user: user )
 
       expect(user.favorite_style).to eq(best.style)
     end    
@@ -74,9 +76,8 @@ RSpec.describe User, type: :model do
     end
 
     it "is the one with highest rating if several rated" do
-      brewery = FactoryBot.create(:brewery)
       create_beers_with_many_ratings({user: user}, 10, 20, 15, 7, 9)
-      best = create_beer_with_rating({ user: user }, 25, brewery, 'best')
+      best = create_beer_with_rating({ user: user }, 25)
 
       expect(user.favorite_beer).to eq(best)
     end    
@@ -103,7 +104,9 @@ RSpec.describe User, type: :model do
     it "is the one with highest rating if several rated" do
       brewery = FactoryBot.create(:brewery)
       create_beers_with_many_ratings({user: user}, 1, 2, 12, 2, 5)
-      best = create_beer_with_rating({ user: user }, 25, brewery, 'best')
+      best = FactoryBot.create(:beer, brewery: brewery)
+      FactoryBot.create(:rating, beer: best, score: 25, user: user )
+
 
       expect(user.favorite_brewery).to eq(best.brewery)
     end    
@@ -128,19 +131,5 @@ RSpec.describe User, type: :model do
       expect(user.ratings.count).to eq(2)
       expect(user.average_rating).to eq(15.0)
     end
-  end
-end
-
-def create_beer_with_rating(object, score, brewery, unique_suffix)
-  name = "beer#{unique_suffix}"
-  beer = FactoryBot.create(:beer, name: name, style: unique_suffix, brewery: brewery)
-  FactoryBot.create(:rating, beer: beer, score: score, user: object[:user] )
-  beer
-end
-
-def create_beers_with_many_ratings(object, *scores)
-  brewery = FactoryBot.create(:brewery, name: "unique123")
-  scores.each_with_index do |score, index|
-    create_beer_with_rating(object, score, brewery, index)
   end
 end

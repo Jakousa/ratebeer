@@ -10,8 +10,7 @@ class Brewery < ApplicationRecord
     errors.add(:year, "can't be in the future") if year > Date.today.year
   end
 
-  validates :name, uniqueness: true,
-                   length: { minimum: 1 }
+  validates :name, length: { minimum: 1 }
 
   def print_report
     puts name

@@ -2,7 +2,7 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/ece38ea507622230c754/maintainability)](https://codeclimate.com/github/Jakousa/ratebeer/maintainability)
 
-[![Build Status](https://travis-ci.com/Jakousa/ratebeer.svg?branch=master)](https://travis-ci.com/Jakousa/ratebeer)
+[![Build Status](https://travis-ci.org/Jakousa/ratebeer.svg?branch=master)](https://travis-ci.org/Jakousa/ratebeer)
 
 Project for course [Wadror](https://courses.helsinki.fi/en/tkt21003/124962395)
 

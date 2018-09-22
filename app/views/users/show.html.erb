@@ -12,6 +12,19 @@
   <% end %>
 </p>
 
+<% if @user.favorite_style %>
+  <p>
+    Favorite style is: <%= @user.favorite_style %>
+  </p>
+<% end %>
+
+<% if @user.favorite_brewery %>
+  <p>
+    Favorite brewery is: <%= @user.favorite_brewery.name %>
+  </p>
+<% end %>
+
+
 <p> Member of </p>
 
 <ul>

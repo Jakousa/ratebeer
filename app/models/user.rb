@@ -29,4 +29,13 @@ class User < ApplicationRecord
       acc[rating.beer.style] = acc[rating.beer.style] + rating.score
     }.max_by{ |_k, v| v }[0]
   end
+
+  def favorite_brewery
+    return nil if ratings.empty?
+
+    ratings.each_with_object({}){ |rating, acc|
+      acc[rating.beer.brewery] = 0 if !acc[rating.beer.brewery]
+      acc[rating.beer.brewery] = acc[rating.beer.brewery] + rating.score
+    }.max_by{ |_k, v| v }[0]
+  end
 end

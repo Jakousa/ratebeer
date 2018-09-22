@@ -7,6 +7,7 @@ class Beer < ApplicationRecord
 
   validates :name, uniqueness: true,
                    length: { minimum: 1 }
+  validates :style, length: { minimum: 1 }
 
   def to_s
     "#{name}, #{Brewery.find(brewery_id).name}"

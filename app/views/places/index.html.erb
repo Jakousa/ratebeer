@@ -1,8 +1,20 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Beer places search</h1>
 <%= form_tag places_path do %>
   city <%= text_field_tag :city, params[:city] %>
   <%= submit_tag "Search" %>
+<% end %>
+
+<% if @weather %>
+  <b>The current beer weather in <%= @weather.location %> </b>
+  <p>
+    <%= @weather.temperature %> Celcius
+  </p>
+  <%= image_tag @weather.icon %>
+  <p>
+    <b> wind </b> <%= @weather.wind_speed %> m/sec, direction <%= @weather.wind_direction%>
+  </p>
 <% end %>
 
 <% if @places %>

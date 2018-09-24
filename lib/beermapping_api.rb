@@ -24,7 +24,7 @@ class BeermappingApi
     url = "http://beermapping.com/webservice/locquery/#{key}/#{place_id}"
     response = HTTParty.get url
     place = response.parsed_response["bmp_locations"]["location"]
-    #return nil if place.is_a?(Hash) && place['id'] == "0"
+    # return nil if place.is_a?(Hash) && place['id'] == "0"
     Place.new(place)
   end
 

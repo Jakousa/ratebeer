@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe "Places" do
+  before :each do
+    allow(WeatherApi).to receive(:weather_in).with("kumpula").and_return(nil)
+  end
+  
   it "if one is returned by the API, it is shown at the page" do
     allow(BeermappingApi).to receive(:places_in).with("kumpula").and_return(
       [ Place.new( name:"Oljenkorsi", id: 1 ) ]

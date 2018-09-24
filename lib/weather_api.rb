@@ -2,11 +2,11 @@ class WeatherApi
   def self.weather_in(city)
     city = city.downcase
 
-    #places = Rails.cache.read(city)
-    #return places if places
+    # places = Rails.cache.read(city)
+    # return places if places
 
     weather = get_weather_in(city)
-    #Rails.cache.write(city, places, expires_in: 1.week)
+    # Rails.cache.write(city, places, expires_in: 1.week)
     weather
   end
 
@@ -20,12 +20,12 @@ class WeatherApi
     wind_speed_in_meters_per_second = (response["current"]["wind_kph"] / 3.6).round(1)
 
     Weather.new({
-      location: response["location"]["name"],
-      icon: icon_with_https,
-      wind_speed: wind_speed_in_meters_per_second,
-      wind_direction: response["current"]["wind_dir"],
-      temperature: response["current"]["temp_c"]
-    })
+                  location: response["location"]["name"],
+                  icon: icon_with_https,
+                  wind_speed: wind_speed_in_meters_per_second,
+                  wind_direction: response["current"]["wind_dir"],
+                  temperature: response["current"]["temp_c"]
+                })
   end
 
   def self.key

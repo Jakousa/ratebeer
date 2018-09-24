@@ -17,7 +17,9 @@
 </ul>
 
 <% if current_user %>
-  <% unless current_user.beer_clubs.include? @beer_club %>
+  <% if current_user.beer_clubs.include? @beer_club %>
+      <%= button_to 'end the membership', @membership, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% else %>
     <%= form_for(@membership) do |f| %>
       <%= f.hidden_field :beer_club_id %>
       <%= f.submit value:"join the club" %>

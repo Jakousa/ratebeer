@@ -40,7 +40,7 @@
     <li>
       <%= rating %>
       <% if @user == current_user %>
-          <%= link_to 'delete', rating, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'delete', rating, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-sm btn-danger' %>
       <% end %>
     </li>
   <% end %>
@@ -48,6 +48,6 @@
 
 <% if @user == current_user %>
   <%= link_to 'Edit', edit_user_path(@user) %> |
-  <%= link_to 'Delete', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'Delete', @user, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-sm btn-danger' %> |
 <% end %>
 <%= link_to 'Back', users_path %>

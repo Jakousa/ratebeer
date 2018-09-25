@@ -41,17 +41,19 @@
           </li> 
           <% if current_user %>
             <li class="nav-item">
-              <%= link_to current_user.username, current_user, { class: "nav-link" } %>
-            </li> 
-            <li class="nav-item">
-              <%= link_to 'rate a beer ', new_rating_path, { class: "nav-link" } %>
-            </li>   
-            <li class="nav-item">
-              <%= link_to 'join a club ', new_membership_path, { class: "nav-link" } %>
-            </li> 
-            <li class="nav-item">
-              <%= link_to 'signout', signout_path, class: 'nav-link', method: :delete %>
-            </li>                    
+              <div class="dropdown show">
+                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= current_user.username %>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <%= link_to "my page", current_user, { class: "dropdown-item" } %>
+                  <%= link_to 'rate a beer ', new_rating_path, { class: "dropdown-item" } %>
+                  <%= link_to 'join a club ', new_membership_path, { class: "dropdown-item" } %>
+                  <br/>
+                  <%= link_to 'signout', signout_path, class: 'dropdown-item', method: :delete %>
+                </div>
+              </div>
+            </li>
           <% else %>
             <li class="nav-item">
               <%= link_to 'signin', signin_path, { class: "nav-link" } %>

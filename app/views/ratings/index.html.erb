@@ -2,6 +2,30 @@
 
 <p> Number of ratings: <%= @ratings.count %><p>
 
+<div class="row">
+  <div class="col-sm-4">
+  <p>
+    Best breweries
+  </p>
+
+  <%= render 'top_list', items: @breweries %>
+  </div>
+  <div class="col-sm-4">
+  <p>
+    Best beers
+  </p>
+
+  <%= render 'top_list', items: @beers %>
+  </div>
+  <div class="col-sm-4">
+  <p>
+    Best styles
+  </p>
+
+  <%= render 'top_list', items: @styles %>
+  </div>
+</div>
+
 <p>
   Most recent ratings
 </p>
@@ -9,23 +33,10 @@
 <%= render 'list', ratings: @ratings.recent %>
 
 <p>
-  Best breweries
+  Most active users
 </p>
 
-<ul>
-  <% @breweries.each do |brewery|%>
-  <li> <%= link_to brewery.name, brewery %> </li>
-  <% end %>
-</ul>
-
-<p>
-  Best beers
-</p>
-<ul>
-  <% @beers.each do |beer|%>
-  <li> <%= link_to beer, beer %> </li>
-  <% end %>
-</ul>
+<%= render 'top_list', items: @users %>
 
 
 <%= link_to('New Rating', new_rating_path) if current_user %>

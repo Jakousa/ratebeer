@@ -43,4 +43,8 @@ class User < ApplicationRecord
       acc[rating.beer.brewery] = acc[rating.beer.brewery] + rating.score
     }.max_by{ |_k, v| v }[0]
   end
+
+  def to_s
+    username
+  end
 end

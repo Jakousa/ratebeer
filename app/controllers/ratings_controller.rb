@@ -3,6 +3,8 @@ class RatingsController < ApplicationController
     @ratings = Rating.all
     @beers = Beer.top 3
     @breweries = Brewery.top 3
+    @users = User.top 3
+    @styles = Style.top 3
   end
 
   def new

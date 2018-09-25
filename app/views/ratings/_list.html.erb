@@ -8,10 +8,11 @@
   </thead>
 
   <tbody>
-    <% ratings.each do |rating| %>
+    <% ratings.reverse.each do |rating| %>
     <tr> 
       <td><%= rating %></td> 
       <td><%= link_to rating.user.username, user_path(rating.user) %> </td>
+      <td><%= rating.updated_at %> </td>
     </tr>
   <% end %>
   </tbody>

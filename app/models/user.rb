@@ -26,22 +26,24 @@ class User < ApplicationRecord
     ratings.order(score: :desc).limit(1).first.beer
   end
 
-  def favorite_style
+  def favorite(groupped_by)
     return nil if ratings.empty?
 
     ratings.each_with_object({}){ |rating, acc|
-      acc[rating.beer.style] = 0 if !acc[rating.beer.style]
-      acc[rating.beer.style] = acc[rating.beer.style] + rating.score
+      acc[rating.beer.send(groupped_by)] = 0 if !acc[rating.beer.send(groupped_by)]
+      acc[rating.beer.send(groupped_by)] = acc[rating.beer.send(groupped_by)] + rating.score
     }.max_by{ |_k, v| v }[0]
   end
 
-  def favorite_brewery
-    return nil if ratings.empty?
+  def method_missing(method_name, *args, &block)
+    return super if method_name !~ /^favorite_/
 
-    ratings.each_with_object({}){ |rating, acc|
-      acc[rating.beer.brewery] = 0 if !acc[rating.beer.brewery]
-      acc[rating.beer.brewery] = acc[rating.beer.brewery] + rating.score
-    }.max_by{ |_k, v| v }[0]
+    category = method_name[9..-1].to_sym
+    favorite category
+  end
+
+  def respond_to_missing?(method_name, include_private = false)
+    method_name.to_s.start_with?('favorite_') || super
   end
 
   def to_s

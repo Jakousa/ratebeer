@@ -1,8 +1,13 @@
-
-
 <h1>
   <%= @user.username %>
+  <% if @user.blocked  %>
+    <span class="badge badge-info">account closed</span>
+  <% end %>
 </h1>
+
+<% if current_user && current_user.admin? %>
+  <%= link_to @user.blocked ? 'open account' : 'close account', toggle_blocked_user_path(@user.id), method: :post, class: "btn btn-danger" %>
+<% end %>
 
 <p>
   <% if @user.ratings.empty? %>

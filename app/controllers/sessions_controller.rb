@@ -6,12 +6,12 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by username: params[:username]
     # tarkastetaan että käyttäjä olemassa, ja että salasana on oikea
-    if user&.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect_to user_path(user), notice: "Welcome back!"
-    else
-      redirect_to signin_path, notice: "username and password do not match"
-    end
+    return redirect_to signin_path, notice: "username and password do not match" if !user&.authenticate(params[:password])
+
+    return redirect_to signin_path, notice: "Your account is frozen, please contact admin" if user.blocked
+
+    session[:user_id] = user.id
+    redirect_to user_path(user), notice: "Welcome back!"
   end
 
   def destroy

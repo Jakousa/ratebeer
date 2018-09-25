@@ -15,6 +15,11 @@
       <tr>
         <td><%= user.username %></td>
         <td><%= link_to 'Show', user %></td>
+        <td>
+        <% if user.blocked %>
+          <span class="badge badge-info">account closed</span>
+        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -66,6 +66,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def toggle_blocked
+    user = User.find(params[:id])
+    user.update_attribute :blocked, !user.blocked
+
+    new_status = user.blocked? ? "blocked" : "active"
+
+    redirect_to user, notice: "user status changed to #{new_status}"
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

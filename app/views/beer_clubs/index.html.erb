@@ -1,8 +1,8 @@
-
-
 <h1>Beer Clubs</h1>
 
-<table  class="table table-hover">
+<p> Number of beer clubs: <%= @beer_clubs.count %> </p>
+
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Name</th>
@@ -20,7 +20,7 @@
         <td><%= beer_club.city %></td>
         <td><%= link_to 'Show', beer_club %></td>
         <% if current_user %>
-          <td><%= link_to 'Edit', edit_beer_club_path(beer_club) %></td>
+          <td><%= link_to 'Edit', edit_beer_club_path(beer_club), class: "btn btn-sm btn-info" %></td>
           <td><%= link_to 'Destroy', beer_club, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-sm btn-danger' %></td>
         <% end %>
       </tr>

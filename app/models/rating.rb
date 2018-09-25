@@ -7,6 +7,6 @@ class Rating < ApplicationRecord
                                     only_integer: true }
 
   def to_s
-    "#{Beer.find(beer_id).name} #{score}"
+    "#{Beer.find(beer_id).name}: #{score}"
   end
 end

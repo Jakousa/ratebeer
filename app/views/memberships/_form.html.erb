@@ -13,15 +13,15 @@
 
   <div class="field">
     <%= form.label :beer_club_id %>
-    <%= form.text_field :beer_club_id %>
+    <%= form.text_field :beer_club_id, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.text_field :user_id, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-primary" %>
   </div>
 <% end %>

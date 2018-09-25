@@ -15,6 +15,11 @@ class User < ApplicationRecord
 
   validates :password, length: { minimum: 4 }
 
+  def self.top(number)
+    sorted_by_rating_in_desc_order = User.all.sort_by{ |b| -b.ratings.count }
+    sorted_by_rating_in_desc_order[0, number]
+  end
+
   def favorite_beer
     return nil if ratings.empty?
 

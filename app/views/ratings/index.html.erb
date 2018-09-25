@@ -2,23 +2,30 @@
 
 <p> Number of ratings: <%= @ratings.count %><p>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Rating</th>
-      <th>By</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<p>
+  Most recent ratings
+</p>
 
-  <tbody>
-    <% @ratings.each do |rating| %>
-    <tr> 
-      <td><%= rating %></td> 
-      <td><%= link_to rating.user.username, user_path(rating.user) %> </td>
-    </tr>
+<%= render 'list', ratings: @ratings.recent %>
+
+<p>
+  Best breweries
+</p>
+
+<ul>
+  <% @breweries.each do |brewery|%>
+  <li> <%= link_to brewery.name, brewery %> </li>
   <% end %>
-  </tbody>
-</table>
+</ul>
+
+<p>
+  Best beers
+</p>
+<ul>
+  <% @beers.each do |beer|%>
+  <li> <%= link_to beer, beer %> </li>
+  <% end %>
+</ul>
+
 
 <%= link_to('New Rating', new_rating_path) if current_user %>

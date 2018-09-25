@@ -6,6 +6,8 @@ class Rating < ApplicationRecord
                                     less_than_or_equal_to: 50,
                                     only_integer: true }
 
+  scope :recent, -> { order("updated_at").last(5) }
+
   def to_s
     "#{Beer.find(beer_id).name}: #{score}"
   end

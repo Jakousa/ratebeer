@@ -1,9 +1,9 @@
 module ApplicationHelper
   include ActionView::Helpers::NumberHelper
 
-
   def edit_and_destroy_buttons(item)
     return if current_user.nil?
+    return if !current_user.admin
 
     edit = link_to('Edit', url_for([:edit, item]), class: "btn btn-primary")
     del = link_to('Destroy', item, method: :delete,

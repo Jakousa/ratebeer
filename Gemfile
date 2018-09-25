@@ -59,6 +59,8 @@ group :development do
 end
 
 group :test do
+  # Bootstrap requires
+  gem 'mini_racer', platforms: :ruby
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
@@ -75,6 +77,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'httparty'
+gem 'bootstrap', '~> 4.1.3'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.8'

@@ -5,8 +5,10 @@ class User < ApplicationRecord
 
   has_many :ratings, dependent: :destroy
   has_many :beers, through: :ratings
-  has_many :memberships, dependent: :destroy
+  has_many :memberships, -> { where confirmed: true }, dependent: :destroy
   has_many :beer_clubs, through: :memberships
+  has_many :applications, -> { where confirmed: [false, nil] }, class_name: "Membership", dependent: :destroy
+  has_many :clubs_applied_to, through: :applications, source: :beer_club
 
   validates :username, uniqueness: true,
                        length: { minimum: 3, maximum: 30 }

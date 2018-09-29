@@ -8,21 +8,41 @@
   Founded: <%= @beer_club.founded %>
 </p>
 
-<h2>Members</h2>
-
-<ul>
-  <% @beer_club.users.each do |user| %>
-    <li> <%= link_to user.username, user_path(user) %></li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="col-sm-4">
+    <h2>
+      Members
+    </h2>
+    <ul>
+      <% @beer_club.users.each do |user| %>
+        <li> <%= link_to user.username, user_path(user) %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-sm-4">
+    <h2>
+      Applicants
+    </h2>
+    <ul>
+      <% @beer_club.applications.each do |application| %>
+        <li> 
+          <%= link_to application.user.username, user_path(application.user) %>
+          <% if current_user.beer_clubs.include? @beer_club %>
+            <%= link_to "confirm", toggle_confirmed_membership_path(application.id), method: :post, class: "btn btn-danger" %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
 <% if current_user %>
   <% if current_user.beer_clubs.include? @beer_club %>
       <%= button_to 'end the membership', @membership, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <% else %>
+  <% elsif !current_user.clubs_applied_to.include? @beer_club %>
     <%= form_for(@membership) do |f| %>
       <%= f.hidden_field :beer_club_id %>
-      <%= f.submit class:"btn btn-primary" value:"join the club" %>
+      <%= f.submit class:"btn btn-primary", value:"send application to the club" %>
     <% end %>
   <% end %>
 <% end %>

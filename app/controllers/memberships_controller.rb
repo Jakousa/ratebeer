@@ -64,6 +64,13 @@ class MembershipsController < ApplicationController
     end
   end
 
+  def toggle_confirmed
+    membership = Membership.find(params[:id])
+    membership.update_attribute :confirmed, !membership.confirmed
+
+    redirect_to beer_club_path(membership.beer_club_id), notice: "New member confirmed!"
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

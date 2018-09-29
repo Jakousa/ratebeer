@@ -79,6 +79,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'httparty'
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
+gem 'rack-mini-profiler'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.8'

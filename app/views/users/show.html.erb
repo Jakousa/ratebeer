@@ -38,6 +38,14 @@
   <% end %>
 </ul>
 
+<p> Applied to </p>
+
+<ul>
+  <% @user.clubs_applied_to.each do |club| %>
+    <li> <%= link_to club.name, club %></li>
+  <% end %>
+</ul>
+
 <h2>List of ratings</h2>
 
 <ul>

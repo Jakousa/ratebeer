@@ -1,5 +1,6 @@
 class Brewery < ApplicationRecord
   include RatingAverage
+  extend RatingTop
 
   has_many :beers, dependent: :destroy
   has_many :ratings, through: :beers
@@ -14,11 +15,6 @@ class Brewery < ApplicationRecord
   end
 
   validates :name, length: { minimum: 1 }
-
-  def self.top(number)
-    sorted_by_rating_in_desc_order = Brewery.all.sort_by{ |b| -b.average_rating }
-    sorted_by_rating_in_desc_order[0, number]
-  end
 
   def print_report
     puts name

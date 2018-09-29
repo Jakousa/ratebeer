@@ -19,13 +19,13 @@ class WeatherApi
     icon_with_https = "https:#{response['current']['condition']['icon']}"
     wind_speed_in_meters_per_second = (response["current"]["wind_kph"] / 3.6).round(1)
 
-    Weather.new({
-                  location: response["location"]["name"],
-                  icon: icon_with_https,
-                  wind_speed: wind_speed_in_meters_per_second,
-                  wind_direction: response["current"]["wind_dir"],
-                  temperature: response["current"]["temp_c"]
-                })
+    Weather.new(
+      location: response["location"]["name"],
+      icon: icon_with_https,
+      wind_speed: wind_speed_in_meters_per_second,
+      wind_direction: response["current"]["wind_dir"],
+      temperature: response["current"]["temp_c"]
+    )
   end
 
   def self.key

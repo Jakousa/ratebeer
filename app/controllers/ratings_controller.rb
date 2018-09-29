@@ -1,5 +1,4 @@
 class RatingsController < ApplicationController
-
   # Caching with simple fragments and 1 day / delete refresh
   # Voit olettaa, että käyttäjät ovat tyytyväisiä eventual consistency -mallin mukaiseen tiedon ajantasaisuuteen.
   def index

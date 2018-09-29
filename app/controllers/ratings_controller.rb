@@ -1,5 +1,10 @@
 class RatingsController < ApplicationController
+
+  # Caching with simple fragments and 1 day / delete refresh
+  # Voit olettaa, että käyttäjät ovat tyytyväisiä eventual consistency -mallin mukaiseen tiedon ajantasaisuuteen.
   def index
+    return if request.format.html? && fragment_exist?('ratingpage')
+
     @ratings = Rating.all
     @beers = Beer.top 3
     @breweries = Brewery.top 3
@@ -27,6 +32,7 @@ class RatingsController < ApplicationController
   end
 
   def destroy
+    expire_fragment('ratingpage')
     rating = Rating.find params[:id]
     rating.delete if current_user == rating.user
     redirect_to user_path(current_user)

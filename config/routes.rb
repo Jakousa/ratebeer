@@ -13,7 +13,10 @@ Rails.application.routes.draw do
 
   post 'places', to:'places#search'
 
+  get 'brewerylist', to:'breweries#list'
+  get 'beerlist', to:'beers#list'
   get 'kaikki_bisset', to: 'beers#index'
+  
   get 'signup', to: 'users#new'
   get 'signin', to: 'sessions#new'
   delete 'signout', to: 'sessions#destroy'

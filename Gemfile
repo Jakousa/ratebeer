@@ -81,6 +81,7 @@ gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'rack-mini-profiler'
 gem 'sucker_punch', '~> 2.0'
+gem 'omniauth-github'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.8'
